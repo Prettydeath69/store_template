@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Admin Panel</h1>
+        </div>
+    </header>
+    <main class="container">
+        <h2>Manage Products</h2>
+        <form id="addProductForm">
+            <input type="text" id="productName" placeholder="Product Name" required>
+            <input type="number" id="productPrice" placeholder="Product Price" required>
+            <textarea id="productDescription" placeholder="Product Description" required></textarea>
+            <input type="text" id="productImage" placeholder="Image URL" required>
+            <button type="submit">Add Product</button>
+        </form>
+        <h3>Product List</h3>
+        <ul id="productList"></ul>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const productList = document.getElementById('productList');
+            const addProductForm = document.getElementById('addProductForm');
+
+            fetch('/api/products')
+                .then(response => response.json())
+                .then(products => {
+                    products.forEach(product => {
+                        const li = document.createElement('li');
+                        li.textContent = `${product.name} - $${product.price}`;
+                        productList.appendChild(li);
+                    });
+                });
+
+            addProductForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = document.getElementById('productName').value;
+                const price = document.getElementById('productPrice').value;
+                const description = document.getElementById('productDescription').value;
+                const image = document.getElementById('productImage').value;
+
+                fetch('/api/products', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ name, price, description, image })
+                })
+                .then(response => response.json())
+                .then(product => {
+                    const li = document.createElement('li');
+                    li.textContent = `${product.name} - $${product.price}`;
+                    productList.appendChild(li);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

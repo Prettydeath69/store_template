@@ -1,0 +1,129 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+/* Header styles */
+header {
+    background-color: #333;
+    color: white;
+    padding: 1em 0;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header h1 {
+    display: inline-block;
+    margin: 0;
+}
+
+nav {
+    display: inline-block;
+}
+
+nav a {
+    margin: 0 1em;
+    color: white;
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Hero section styles */
+.hero {
+    background: url('hero.jpg') no-repeat center center;
+    background-size: cover;
+    padding: 4em 0;
+    text-align: center;
+    color: white;
+}
+
+.hero h2 {
+    font-size: 3em;
+    margin: 0;
+}
+
+/* Product grid styles */
+.product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 2em 0;
+}
+
+.product-item {
+    border: 1px solid #ccc;
+    background-color: white;
+    margin: 1em;
+    padding: 1em;
+    width: calc(25% - 2em);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.product-item img {
+    max-width: 100%;
+    height: auto;
+}
+
+.product-item h3 {
+    font-size: 1.2em;
+    margin: 0.5em 0;
+}
+
+.product-item p {
+    font-size: 1em;
+    margin: 0.5em 0;
+}
+
+.product-item button {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 0.5em 1em;
+    cursor: pointer;
+}
+
+.product-item button:hover {
+    background-color: #555;
+}
+
+/* Footer styles */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1em 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .product-item {
+        width: calc(50% - 2em);
+    }
+}
+
+@media (max-width: 480px) {
+    .product-item {
+        width: calc(100% - 2em);
+    }
+
+    .hero h2 {
+        font-size: 2em;
+    }
+}
